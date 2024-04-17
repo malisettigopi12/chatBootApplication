@@ -5,9 +5,7 @@ import { Stack } from "@mui/system";
 import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
 import { InputBase } from "@mui/material";
 import { styled, alpha,useTheme } from "@mui/material/styles";
-import { faker } from "@faker-js/faker";
 import { ChatList } from "../../data";
-import { SimpleBarStyle } from "../../components/Scrollbar";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -143,9 +141,9 @@ const Chats = () => {
           </Stack>
           <Divider />
           <Stack 
-          spacing={3}
-          direction={"column"} sx={{ flexGrow : 1, height: "100%", overflow: "scroll",}}>
-            <SimpleBarStyle timeout={500} clickOnTrack={false}>
+           spacing={3}
+           direction={"column"} sx={{ flexGrow : 1, height: "100%", overflow: "auto",}}>
+            {/* <SimpleBarStyle timeout={500} clickOnTrack={false}> */}
             <Stack spacing={2.4}>
              <Typography sx={{color: "#676767"}} variant="subtitle1">
                 pinned
@@ -162,7 +160,7 @@ const Chats = () => {
                return <ChatElement {...ele}/>;
              })}
             </Stack>
-            </SimpleBarStyle> 
+            {/* </SimpleBarStyle>  */}
           </Stack>
         </Stack>
 
