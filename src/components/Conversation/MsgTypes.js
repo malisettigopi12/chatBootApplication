@@ -1,8 +1,9 @@
 
-import { Divider, Stack, Typography, useTheme, Box, Link, IconButton } from "@mui/material"
-import { DownloadSimple, Image } from "phosphor-react";
+import { Divider, Stack, Typography, useTheme, Box, Link, IconButton, Menu, MenuItem } from "@mui/material"
+import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
 
 import React from "react"
+import {Message_options} from "../../data"
 
 const DocMsg = ({ ele }) => {
     const theme = useTheme();
@@ -40,7 +41,7 @@ const DocMsg = ({ ele }) => {
                     </Stack>
                 </Stack>
             </Box>
-
+            <MessageOptions/>
         </Stack>
     )
 }
@@ -85,6 +86,7 @@ const LinkMsg = ({ ele }) => {
                     </Stack>
                 </Stack>
             </Box>
+            <MessageOptions/>
         </Stack>
     )
 }
@@ -113,6 +115,7 @@ const ReplyMsg = ({ ele }) => {
                     </Typography>
                 </Stack>
             </Box>
+            <MessageOptions/>
         </Stack>
     )
 }
@@ -140,6 +143,7 @@ const MediaMsg = ({ ele }) => {
                     </Typography>
                 </Stack>
             </Box>
+            <MessageOptions/>
         </Stack>
     )
 }
@@ -159,8 +163,9 @@ const TextMsg = ({ ele }) => {
             >
                 <Typography
                     variant="body2" color={ele.incoming ? theme.palette.text : "#fff"}
-                >{ele.message}</Typography>
+                >{ele.message}</Typography> 
             </Box>
+            <MessageOptions/>
         </Stack>
     )
 }
@@ -176,4 +181,44 @@ const Timeline = ({ ele }) => {
     )
 }
 
+const MessageOptions = ()=>{
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+    return(
+
+        <>
+        <DotsThreeVertical 
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+        size={20}/>
+
+        <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+          <Stack spacing={1} px={1}>
+              {Message_options.map((ele)=>(
+                  <MenuItem onClick={()=>{}}>{ele.title}</MenuItem>
+              ))}
+          </Stack>
+      </Menu>
+
+        </>
+    )
+}
 export { Timeline, TextMsg, MediaMsg, ReplyMsg, LinkMsg, DocMsg }; 

@@ -1,6 +1,6 @@
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
-import { Avatar, Badge, Divider,  IconButton, Typography } from "@mui/material";
+import { Avatar, Divider,  IconButton, Typography } from "@mui/material";
 import { Box, Stack,} from "@mui/material"
 import React from "react";
 import { CaretDown, MagnifyingGlass,  Phone, VideoCamera } from "phosphor-react";
