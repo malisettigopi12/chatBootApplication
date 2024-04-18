@@ -1,9 +1,12 @@
 import React from "react";
-import { Box, IconButton, Tab, Tabs, Typography } from "@mui/material"
+import { Box, Grid, IconButton, Tab, Tabs, Typography } from "@mui/material"
 import { Stack, useTheme } from "@mui/system";
 import { CaretLeft, X } from "phosphor-react";
 import { useDispatch } from "react-redux";
 import { UpdateSidebarType } from "../Redux/slices/app";
+import { faker } from "@faker-js/faker";
+import { SHARED_DOCS, SHARED_LINKS } from "../data";
+import { DocMsg, LinkMsg } from "./Conversation/MsgTypes";
 
 
 const SharedMessages = ()=>{
@@ -39,18 +42,53 @@ const SharedMessages = ()=>{
                 }}>
                     <CaretLeft/>
                 </IconButton>
-                <Typography variant="subtitle2">Starred Messages</Typography>
+                <Typography variant="subtitle2">Shared Messages</Typography>
                 </Stack>
                 </Box>
-                <Tabs value={value} onChange={handleChange} centered>
-                    <Tab label="Item One" />
-                    <Tab label="Item Two" />
-                    <Tab label="Item Three" />
+                <Tabs sx={{px: 2, pt:2, }}value={value} onChange={handleChange} centered>
+                    <Tab label="Media" />
+                    <Tab label="Links" />
+                    <Tab label="Docs" />
                 </Tabs>
                  {/* Body */}
                  <Stack sx={{height: "100%", position: "relative", flexGrow:1, 
                  overflowY: "scroll"}}
-                 p={3} spacing={3}>
+                 p={3} spacing={value === 1 ? 1 : 3}>
+
+                     {(
+                         ()=>{
+                           switch(value){
+                               case 0:
+                                   return(
+                                   <Grid container spacing={2}>
+                                    {
+                                        [0,1,2,3,4,5,6].map(
+                                            (ele) => {
+                                                return <Grid item xs={4}>
+                                                    <img src={faker.image.avatar()} alt={faker.name.fullName()}/>
+                                                </Grid>
+                                                
+                                            }
+                                        )
+                                    }
+                                   </Grid>
+                                   )
+                                   
+                                case 1:
+                                    return SHARED_LINKS.map(
+                                        (ele)=> <LinkMsg ele={ele}/>
+                                    )
+                        
+                                case 2:
+                                   
+                                return SHARED_DOCS.map(
+                                    (ele) => <DocMsg ele={ele}/>
+                                )
+                                default:
+                                    return <></>           
+                           }
+                         }
+                     )()}
                    
                  </Stack>
                 </Stack>

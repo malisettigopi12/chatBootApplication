@@ -5,7 +5,7 @@ import { DotsThreeVertical, DownloadSimple, Image } from "phosphor-react";
 import React from "react"
 import {Message_options} from "../../data"
 
-const DocMsg = ({ ele }) => {
+const DocMsg = ({ ele , menu}) => {
     const theme = useTheme();
     return (
         <Stack direction={"row"} justifyContent={ele.incoming ? "start" : "end"}>
@@ -41,11 +41,11 @@ const DocMsg = ({ ele }) => {
                     </Stack>
                 </Stack>
             </Box>
-            <MessageOptions/>
+            {menu && <MessageOptions/>}
         </Stack>
     )
 }
-const LinkMsg = ({ ele }) => {
+const LinkMsg = ({ ele , menu}) => {
     const theme = useTheme();
     return (
         <Stack direction={"row"} justifyContent={ele.incoming ? "start" : "end"}>
@@ -86,11 +86,11 @@ const LinkMsg = ({ ele }) => {
                     </Stack>
                 </Stack>
             </Box>
-            <MessageOptions/>
+            {menu && <MessageOptions/>}
         </Stack>
     )
 }
-const ReplyMsg = ({ ele }) => {
+const ReplyMsg = ({ ele,menu }) => {
     const theme = useTheme();
     return (
         <Stack direction={"row"} justifyContent={ele.incoming ? "start" : "end"}>
@@ -115,11 +115,11 @@ const ReplyMsg = ({ ele }) => {
                     </Typography>
                 </Stack>
             </Box>
-            <MessageOptions/>
+            {menu && <MessageOptions/>}
         </Stack>
     )
 }
-const MediaMsg = ({ ele }) => {
+const MediaMsg = ({ ele,menu }) => {
     const theme = useTheme();
     return (
         <Stack direction={"row"} justifyContent={ele.incoming ? "start" : "end"}>
@@ -143,11 +143,11 @@ const MediaMsg = ({ ele }) => {
                     </Typography>
                 </Stack>
             </Box>
-            <MessageOptions/>
+            {menu && <MessageOptions/>}
         </Stack>
     )
 }
-const TextMsg = ({ ele }) => {
+const TextMsg = ({ ele,menu }) => {
     const theme = useTheme();
     return (
         <Stack direction={"row"} justifyContent={ele.incoming ? "start" : "end"}>
@@ -165,7 +165,7 @@ const TextMsg = ({ ele }) => {
                     variant="body2" color={ele.incoming ? theme.palette.text : "#fff"}
                 >{ele.message}</Typography> 
             </Box>
-            <MessageOptions/>
+            {menu && <MessageOptions/>}
         </Stack>
     )
 }

@@ -3,7 +3,7 @@ import {Box, Stack} from "@mui/material"
 import {Chat_History} from "../../data"
 import React from "react";
 import {MediaMsg, TextMsg, Timeline,ReplyMsg, LinkMsg, DocMsg} from "./MsgTypes";
-const Messages = () => {
+const Messages = ({menu}) => {
     return (
       <Box p={3}>
         <Stack spacing={3}>
@@ -15,19 +15,19 @@ const Messages = () => {
 
                        switch(ele.subtype){
                            case "img":
-                               return <MediaMsg ele={ele}/>
+                               return <MediaMsg ele={ele} menu={menu}/>
                                
                            case "doc":
-                              return <DocMsg ele={ele}/>
+                              return <DocMsg ele={ele} menu={menu}/>
 
                            case "link":
-                               return <LinkMsg ele={ele}/>
+                               return <LinkMsg ele={ele} menu={menu}/>
                                
                             case "reply":
-                                return <ReplyMsg ele={ele}/>
+                                return <ReplyMsg ele={ele} menu={menu}/>
                                 
                            default :
-                           return <TextMsg ele={ele}/>
+                           return <TextMsg ele={ele} menu={menu}/>
                                                
                        }
                   default:
