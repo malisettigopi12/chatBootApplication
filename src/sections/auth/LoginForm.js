@@ -6,6 +6,7 @@ import FormProvider from "../../components/hook-form/FormProvider";
 import { Alert, Button, IconButton, InputAdornment, Link, Stack } from "@mui/material";
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
+import {Link as RouterLink} from "react-router-dom"
 
 const LoginForm = ()=>{
 
@@ -60,7 +61,7 @@ const LoginForm = ()=>{
            }}/>
            </Stack>
            <Stack alignItems={"flex-end"} sx={{my: 2}} spacing={0.5}>
-             <Link  variant="body2" color= "inherit" underline="always">
+             <Link  component = {RouterLink} to="/auth/reset-password" variant="body2" color= "inherit" underline="always">
                  Forgot Password?
              </Link>
              <Button fullWidth color="inherit" size="large" type="submit"
