@@ -9,6 +9,83 @@ import {
   Users,
 } from "phosphor-react";
 
+const CallLogs = [
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    missed: true,
+    incoming: false,
+  },
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    missed: true,
+    incoming: false,
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    missed: true,
+    incoming: false,
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    missed: true,
+    incoming: false,
+  },
+  {
+    id: 4,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    missed: true,
+    incoming: false,
+  },
+]
+
+const Members_list = [
+
+  {
+    id: 4,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    online: true,
+  },
+  {
+    id: 5,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    online: true,
+  },
+  {
+    id: 1,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    online: false,
+  },
+  {
+    id: 2,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    online: false,
+  },
+  {
+    id: 3,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+  },
+  {
+    id: 0,
+    img: faker.image.avatar(),
+    name: faker.name.fullName(),
+    online: true,
+  },
+  
+]
 const Profile_Menu = [
   {
     title: "Profile",
@@ -287,4 +364,6 @@ export {
   Message_options,
   SHARED_LINKS,
   SHARED_DOCS,
+  CallLogs,
+  Members_list
 };
