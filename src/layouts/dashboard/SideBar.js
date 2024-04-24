@@ -9,8 +9,32 @@ import AntSwitch from "../../components/AntSwitch";
 import { Nav_Buttons, Profile_Menu } from "../../data/index"
 import useSettings from "../../hooks/useSettings";
 
-const SideBar = () => {
+import { useNavigate } from "react-router-dom";
+import { getMenuItemUnstyledUtilityClass } from "@mui/base";
 
+const getPath = (index) => {
+
+  switch(index){
+    case 0 : return "/app";
+    case 1 : return "/group";
+    case 2 : return "/call";
+  }
+}
+const getMenuItem = (index) => {
+
+  switch(index){
+    case 0 : return "/profile";
+    case 1 : return "/settings";
+    case 2 : 
+    // TODO : update token and isAuth = false;
+    return "/auth/login";
+  }
+}
+
+
+const SideBar = () => {
+   
+  const navigate = useNavigate();
   const theme = useTheme();
   const { onToggleMode } = useSettings();
   const [selected, setSelected] = useState(0);
@@ -53,7 +77,7 @@ const SideBar = () => {
                       backgroundColor: theme.palette.primary.main,
                       borderRadius: 1.5,
                     }}>
-                    <IconButton key={ele.index}>
+                    <IconButton key={ele.index} >
                       {ele.icon}
                     </IconButton>
                   </Box>
@@ -61,7 +85,10 @@ const SideBar = () => {
                   <Box>
                     <IconButton
                       p={1}
-                      onClick={() => setSelected(ele.index)}
+                      onClick={() => {
+                        setSelected(ele.index)
+                        navigate(getPath(ele.index));
+                      }}
                       sx={{ width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary }}
                       key={ele.index}>
                       {ele.icon}
@@ -82,7 +109,10 @@ const SideBar = () => {
                 </Box>
                 :
                 <Box p={1}
-                  onClick={() => setSelected(3)}
+                  onClick={() => {
+                    setSelected(3);
+                    navigate("/settings")
+                  }}
                   sx={{ width: "max-content", color: theme.palette.mode === "light" ? "#000" : theme.palette.text.primary }}>
                   <IconButton>
                     <Gear />
@@ -120,13 +150,14 @@ const SideBar = () => {
             }}
           >
             <Stack spacing={1} px={1}>
-              {Profile_Menu.map((ele) => (
+              {Profile_Menu.map((ele,idx) => (
                 <MenuItem onClick={() => { }}>
                   <Stack
                     direction={"row"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
                     sx={{ width: 100 }}
+                    onClick={()=> navigate(getMenuItem(idx))}
                   >
                     <span>{ele.title}</span>
                     {ele.icon}

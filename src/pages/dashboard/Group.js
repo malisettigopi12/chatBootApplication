@@ -77,6 +77,8 @@ const Group = () => {
 
             </Stack>
            </Box>
+
+           {/* right */}
         </Stack>
 
         {openDialog && <CreateGroup open={openDialog} handleClose={handleCloseDialog}/>}
