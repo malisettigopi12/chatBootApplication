@@ -7,9 +7,13 @@ import { Alert, Button, IconButton, InputAdornment, Link, Stack } from "@mui/mat
 import { RHFTextField } from "../../components/hook-form";
 import { Eye, EyeSlash } from "phosphor-react";
 import {Link as RouterLink} from "react-router-dom"
+import { LogginUser } from "../../Redux/slices/auth";
+import { useDispatch } from "react-redux";
 
 const LoginForm = ()=>{
-
+    
+    const dispatch = useDispatch();
+    
     const [showPassword, setShowPassword] = useState(false);
 
     const LoginSchema = Yup.object().shape({
@@ -32,7 +36,9 @@ const LoginForm = ()=>{
 
   const onSubmit = async (data) => {
       try{
-          // backend
+          
+        dispatch(LogginUser(data));
+        
       }catch(error){
           console.log(error);
           reset();
