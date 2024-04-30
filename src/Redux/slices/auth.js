@@ -55,3 +55,58 @@ export function LogginUser(formValues){
          })
      }
 }
+
+export function logoutUser(){
+
+    return async (dispatch, getState)=>{
+
+        dispatch(slice.actions.signOut());
+    }
+}
+
+export function resetPassword(formValues){
+
+    return async (dispatch, getState)=>{
+      
+        await axios.post('/auth/forgot-password',
+           {
+               ...formValues,
+           },
+           {
+               headers:{
+                   "Content-Type": "application/json",
+               },
+           }
+        ).then(function (res){
+            console.log(res);
+        }).catch(function (err){
+            console.log(err);
+        })
+    }
+}
+
+export function newPassword(formValues){
+
+    return async (dispatch, getState)=>{
+      
+        await axios.post('/auth/reset-password',
+           {
+               ...formValues,
+           },
+           {
+               headers:{
+                   "Content-Type": "application/json",
+               },
+           }
+        ).then(function (res){
+            console.log(res);
+
+            dispatch(slice.actions.logIn({
+                isLoggedIn : true,
+                token: res.data.token,
+            }))
+        }).catch(function (err){
+            console.log(err);
+        })
+    }
+}

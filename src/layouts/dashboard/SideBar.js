@@ -10,7 +10,8 @@ import { Nav_Buttons, Profile_Menu } from "../../data/index"
 import useSettings from "../../hooks/useSettings";
 
 import { useNavigate } from "react-router-dom";
-import { getMenuItemUnstyledUtilityClass } from "@mui/base";
+import {useDispatch} from "react-redux";
+import { logoutUser } from "../../Redux/slices/auth";
 
 const getPath = (index) => {
 
@@ -38,6 +39,7 @@ const SideBar = () => {
   const theme = useTheme();
   const { onToggleMode } = useSettings();
   const [selected, setSelected] = useState(0);
+  const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -151,13 +153,17 @@ const SideBar = () => {
           >
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((ele,idx) => (
-                <MenuItem onClick={() => { }}>
+                <MenuItem>
                   <Stack
                     direction={"row"}
                     justifyContent={"space-between"}
                     alignItems={"center"}
                     sx={{ width: 100 }}
-                    onClick={()=> navigate(getMenuItem(idx))}
+                    onClick={()=>{
+                     if(idx === 2){
+                       dispatch(logoutUser());
+                     }else navigate(getMenuItem(idx));
+                    }}
                   >
                     <span>{ele.title}</span>
                     {ele.icon}
