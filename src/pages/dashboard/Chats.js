@@ -1,18 +1,29 @@
 
-import React from "react";
+import React, { useState } from "react";
 import {  Box, Button, Divider, IconButton, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
-import { ArchiveBox, CircleDashed, MagnifyingGlass } from "phosphor-react";
+import { ArchiveBox, CircleDashed, MagnifyingGlass, Users } from "phosphor-react";
 import { useTheme } from "@mui/material/styles";
 import { ChatList } from "../../data";
 import { Search, SearchIconWrapper, StyledInputBase } from "../../components/search";
 import ChatElement from "../../components/ChatElement";
+import Friends from "../../sections/main/Friends";
 
 
 const Chats = () => {
+  
+  const [openDialog, setOpenDialog] = useState(false);
 
+  function handleCloseDialog(){
+     setOpenDialog(false);
+  }
+
+  function handleOpenDialog(){
+    setOpenDialog(true);
+ }
   const theme = useTheme();
   return (
+    <>
     <Box
       sx={{
         position: "relative",
@@ -26,9 +37,17 @@ const Chats = () => {
           <Typography variant="h5">
             chats
           </Typography>
+
+          <Stack direction={"row"} spacing={1} alignItems={"center"}>
+          <IconButton onClick={()=>{
+            handleOpenDialog();
+          }}>
+            <Users />
+          </IconButton>
           <IconButton>
             <CircleDashed />
           </IconButton>
+          </Stack>
         </Stack>
         <Stack sx={{ width: "100%" }}>
           <Search>
@@ -68,6 +87,9 @@ const Chats = () => {
 
       </Stack>
     </Box>
+
+    {openDialog && <Friends open={openDialog} handleClose={handleCloseDialog}/>}
+    </>
   )
 }
 
